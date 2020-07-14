@@ -1,8 +1,8 @@
-// import libs
 import React from 'react'
+// для задания типов свойств
 import PropTypes from 'prop-types'
 
-// import components
+// Для создания ссылки на маршрут
 import { Link } from 'react-router-dom'
 
 const displayName = 'ArticleComponent'

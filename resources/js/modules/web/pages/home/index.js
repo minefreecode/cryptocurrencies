@@ -1,7 +1,7 @@
-// import libs
+// импортировать библиотеки redux
 import { connect } from "react-redux"
 
-// import components
+// импортировать компонент
 import Page from "./Page"
 
 export default connect()(Page)

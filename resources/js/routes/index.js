@@ -1,8 +1,13 @@
-// import libs
+// Импортировать реакт
 import React from 'react'
+
+/**
+ * Используем BrowserRouter для такого вида URL http://example.com/about
+ * Switch нужен чтобы в него вложить все роуты
+ */
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 
-// import components
+// общий модуль маршрутов
 import routes from './routes'
 import PrivateRoute from './Private'
 import PublicRoute from './Public'
@@ -13,7 +18,8 @@ const Routes = () => (
   <Router>
     <Layout>
       <Switch>
-        {routes.map((route, i) => {
+        {routes.map((route, i) => { //Создаем массив из элементов PrivateRoute и  в зависимости от необходимости аудентификации
+            //Если роут, требующий аудентификации
           if (route.auth) {
             return <PrivateRoute key={i} {...route} />
           }
