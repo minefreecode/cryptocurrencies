@@ -26,11 +26,11 @@ class RegisterController extends Controller
 
             $http = new Client;
 
-            $response = $http->post( 'http://192.168.1.128:3000/oauth/token', [
+            $response = $http->post( ENV('APP_IP_URL') . ':3000/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'password',
-                    'client_id' => '2', //env('PASSWORD_CLIENT_ID'),
-                    'client_secret' => 'wuTO9PqtQwIStoUkp1EUg0NIyIBzWLzwzzBlDago',//env('PASSWORD_CLIENT_SECRET'),
+                    'client_id' => env('PASSWORD_CLIENT_ID'),
+                    'client_secret' => env('PASSWORD_CLIENT_SECRET'),
                     'username' => $request->get('email'),
                     'password' => $request->get('password'),
                     'remember' => false,
