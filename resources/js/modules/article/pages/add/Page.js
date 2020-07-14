@@ -18,7 +18,7 @@ class Page extends Component {
   constructor(props) {
     super(props)
     
-    this.validator = new ReeValidate({
+    this.validator = new ReeValidate.Validator({
       title: 'required|min:3',
       content: 'required|min:10',
       description: 'required|min:10',
