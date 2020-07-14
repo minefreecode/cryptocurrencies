@@ -1,6 +1,3 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
-
-
 ## Разворачивание
 Убедитесь, что  [docker](https://docs.docker.com/install/) и [docker-compose](https://docs.docker.com/compose/install/) установлены на вашей машине.
 
