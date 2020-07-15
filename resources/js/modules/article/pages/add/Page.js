@@ -5,6 +5,7 @@ import _ from 'lodash'
 import { articleAddRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 
+
 // import components
 import Form from './components/Form'
 
@@ -33,6 +34,8 @@ class Page extends Component {
     
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+
+    this.fileInputRef = React.createRef();
   }
   
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -86,13 +89,20 @@ class Page extends Component {
         this.setState({ errors })
       })
   }
-  
+
+  fileSelect = event => {
+    this.setState({ article: { ...this.state.article, ['selectedFile']: event.target.files[0]} })
+    console.log(event.target.files[0])
+  }
+
   render() {
     return <div className="col-sm-9 ml-sm-auto col-md-10 pt-3">
       <h1>Create</h1>
       <Form {...this.state}
             onChange={this.handleChange}
-            onSubmit={this.handleSubmit} />
+            onSubmit={this.handleSubmit}
+            fileSelectChange={this.fileSelect}
+      />
     </div>
   }
 }

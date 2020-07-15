@@ -8,7 +8,8 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 //Подключаем хранилище
 import store from './store'
-//Подключаем маршруты
+
+//Загружаем список маршрутныъх компонентов, чтобы реакт знал, куда переходить по ссылкам
 import Routes from './routes'
 
 import { authCheck } from './modules/auth/store/actions'
@@ -16,7 +17,7 @@ import { authCheck } from './modules/auth/store/actions'
 //Включаем проверку авторизации
 store.dispatch(authCheck())
 
-//рендерим с использованием flux-паттерна использованием redux
+//рендерим с использованием flux-паттерна использованием redux. Хранилище указываем в правйдере Redux
 render((<Provider store={store}>
     <Routes/>
   </Provider>),

@@ -4,7 +4,7 @@
 1. `git clone`
 2. `create a .env file copy content from .env.docker and do not make any change`
 
-запустите следущую команду в терминале
+запустите следующую команду в терминале
 ```
 docker-compose up -d
 ```

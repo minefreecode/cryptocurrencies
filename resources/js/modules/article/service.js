@@ -1,6 +1,7 @@
 import Http from '../../utils/Http'
 import Transformer from '../../utils/Transformer'
 import * as articleActions from './store/actions'
+import axios from "axios";
 
 function transformRequest(parms) {
   return Transformer.send(parms)
@@ -13,7 +14,14 @@ function transformResponse(params) {
 export function articleAddRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.post('/articles', transformRequest(params))
+      const formData = new FormData();
+      formData.append('file', params.selectedFile)
+      formData.append('title', params.title)
+      formData.append('description', params.description)
+      formData.append('content', params.content)
+
+      Http.defaults.headers.common.Accept = 'multipart/form-data';
+      Http.post('/articles', formData)
         .then(res => {
           dispatch(articleActions.add(transformResponse(res.data)))
           return resolve()

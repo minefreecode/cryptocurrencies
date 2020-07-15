@@ -2,6 +2,9 @@ import moment from 'moment'
 import Model from '../../utils/Model'
 import User from '../user/User'
 
+/**
+ * Модель для статей
+ */
 class Article extends Model {
   constructor(props) {
     super(props)
@@ -18,8 +21,9 @@ class Article extends Model {
     this.content = props.content || ''
     this.published = props.published || false
     this.publishedAt = props.publishedAt ? moment(props.publishedAt) : null
+    this.selectedFile = props.selectedFile || '' //Добавляем файл
 
-    // relate user model
+    // связываем пользователя
     this.user = props.user ? new User(props.user) : null
   }
 }

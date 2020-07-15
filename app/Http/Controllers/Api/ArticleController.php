@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Log;
 
 class ArticleController extends Controller
 {
@@ -64,6 +65,7 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
+Log::info($request);
         $user = $request->user();
 
         $article = new Article($request->validated());

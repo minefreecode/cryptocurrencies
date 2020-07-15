@@ -7,13 +7,16 @@ import React from 'react'
  */
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 
-// общий модуль маршрутов
+// получаем маршруты-компоненты
 import routes from './routes'
 import PrivateRoute from './Private'
 import PublicRoute from './Public'
 
 import Layout from '../layout'
 
+/**
+ *  Router используется для хранения истории и стутусов
+ */
 const Routes = () => (
   <Router>
     <Layout>

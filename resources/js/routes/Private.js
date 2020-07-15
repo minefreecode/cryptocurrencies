@@ -16,6 +16,15 @@ import { Route, Redirect } from 'react-router-dom'
 //Этот компонент будет подключаться к хранилищу
 import { connect } from 'react-redux'
 
+/**
+ * Компонент "Приватный роутер" PrivateRoute
+ *
+ * @param Component Входной параметр компоент
+ * @param isAuthenticated Входной параметр, что аудентифицировались
+ * @param rest Входные остальные параметры
+ * @returns {*}
+ * @constructor
+ */
 const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
     return <Route {...rest} render={props => {
         return <Suspense fallback={<div>Loading...</div>}>
@@ -24,7 +33,7 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
                     ? <Component {...props}/>
                     : <Redirect to={{
                         pathname: '/login',
-                        state: { from: props.location },
+                        state: { from: props.location },//props.location - текщее расположение в путях
                     }}/>
             }
         </Suspense>
@@ -52,5 +61,4 @@ function mapStateToProps(store) {
  * Экспортируем компонент-контейнер с доступом к хранилищу
  * mapStateToProps будет вызываться каждый раз, когда будет меняться хранилище и будет обновлять свойство isAuthenticated компонента
  */
-
 export default connect(mapStateToProps)(PrivateRoute)
