@@ -58,20 +58,26 @@ class ArticleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Сохраняем новый созданный объект в БД
      *
      * @param ArticleRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(ArticleRequest $request)
     {
-Log::info($request);
         $user = $request->user();
 
         $article = new Article($request->validated());
         $article->slug = Str::slug($request->get('title'));
 
+        if ($request['image']){
+            $fileName = "fileName" . time() . '.' . $request['image']->getClientOriginalExtension();
+            $request['image']->move(public_path('/images/article_images'), $fileName);
+            $article['image'] = $fileName;
+        }
+
         $user->articles()->save($article);
+
 
         return response()->json($article, 201);
     }

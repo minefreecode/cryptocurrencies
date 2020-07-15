@@ -15,7 +15,7 @@ export function articleAddRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
       const formData = new FormData();
-      formData.append('file', params.selectedFile)
+      formData.append('image', params.selectedFile)
       formData.append('title', params.title)
       formData.append('description', params.description)
       formData.append('content', params.content)

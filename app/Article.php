@@ -20,7 +20,7 @@ class Article extends Model
      */
     protected $table = 'articles';
 
-    protected $fillable = ['title', 'slug', 'description', 'content', 'published', 'published_at'];
+    protected $fillable = ['title', 'slug', 'description', 'content', 'published', 'published_at', 'image'];
 
     /**
      * The attributes that should be mutated to dates.
