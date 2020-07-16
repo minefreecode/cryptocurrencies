@@ -21,7 +21,7 @@ class Article extends Model {
     this.content = props.content || ''
     this.published = props.published || false
     this.publishedAt = props.publishedAt ? moment(props.publishedAt) : null
-    this.selectedFile = props.selectedFile || '' //Добавляем файл
+    this.imageUrl = props.imageUrl //Картинка
 
     // связываем пользователя
     this.user = props.user ? new User(props.user) : null

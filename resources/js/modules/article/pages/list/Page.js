@@ -69,6 +69,7 @@ class Page extends Component {
         <thead className="thead-inverse">
         <tr>
           <th>#</th>
+          <th></th>
           <th>Title</th>
           <th>Description</th>
           <th>Created At</th>
@@ -87,3 +88,4 @@ class Page extends Component {
 }
 
 export default Page
+

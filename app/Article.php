@@ -22,6 +22,8 @@ class Article extends Model
 
     protected $fillable = ['title', 'slug', 'description', 'content', 'published', 'published_at', 'image'];
 
+    protected $appends = ['image_url'];
+
     /**
      * The attributes that should be mutated to dates.
      *
@@ -37,6 +39,11 @@ class Article extends Model
     protected $casts = [
         'published' => 'boolean',
     ];
+
+    public function getImageUrlAttribute()
+    {
+        return !empty($this->image) ? 'images\\article_images\\' . $this->image : '';
+    }
 
     /**
      * Load all for admin and paginate

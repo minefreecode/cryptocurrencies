@@ -11,6 +11,7 @@ function transformResponse(params) {
   return Transformer.fetch(params)
 }
 
+
 export function articleAddRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
@@ -95,6 +96,11 @@ export function articleRemoveRequest(id) {
   }
 }
 
+/**
+ * Получить список Article
+ * @param params (1-й - номер страницы, Url - откуда скачиваем)
+ * @returns {function(...[*]=)}
+ */
 export function articleListRequest(params) {
 
   let { pageNumber = 1, url = '/articles' } = params

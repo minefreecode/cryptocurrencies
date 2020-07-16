@@ -5,7 +5,6 @@ import _ from 'lodash'
 import { articleAddRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 
-
 // import components
 import Form from './components/Form'
 
@@ -87,9 +86,14 @@ class Page extends Component {
         }
   
         this.setState({ errors })
+        return;
       })
+
+    //Реализовал редирект после добавления
+    this.props.history.push("/articles");
   }
 
+  //Для добавления файла
   fileSelect = event => {
     this.setState({ article: { ...this.state.article, ['selectedFile']: event.target.files[0]} })
     console.log(event.target.files[0])
