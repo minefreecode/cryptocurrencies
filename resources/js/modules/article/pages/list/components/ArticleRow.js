@@ -8,7 +8,6 @@ const ArticleImage = styled.img`
    height: 30px;
 `;
 
-
 const displayName = 'ArticleRow'
 const propTypes = {
   index: PropTypes.number.isRequired,

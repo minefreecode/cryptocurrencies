@@ -28,8 +28,6 @@ class ArticleRequest extends FormRequest
             'title' => 'required|min:3',
             'description' => 'required|min:10',
             'content' => 'required|min:10',
-            'published' => 'nullable|boolean',
-            'published_at' => 'nullable|date',
             'image' => 'nullable|file',
         ];
     }

@@ -29,7 +29,7 @@ class ArticleController extends Controller
     /**
      * get all published articles
      *
-     * @return mixed
+     * @return mixeduse App\File;
      */
     public function publishedArticles()
     {
@@ -118,10 +118,19 @@ class ArticleController extends Controller
      */
     public function update(ArticleRequest $request, $id)
     {
+        Log::info($request);
         $article = Article::findOrFail($id);
 
         $data = $request->validated();
         $data['slug'] = Str::slug($data['title']);
+
+        if ($request['image']){
+            $fileName = "fileName" . time() . '.' . $request['image']->getClientOriginalExtension();
+            unlink(public_path('/images/article_images/' . $article->image));
+            $request['image']->move(public_path('/images/article_images'), $fileName);
+            $data['image'] = $fileName;
+        }
+
         $article->update($data);
 
         return response()->json($article, 200);

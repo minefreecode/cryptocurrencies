@@ -58,7 +58,7 @@ const Form = ({ article, errors, onChange, onSubmit, fileSelectChange }) => {
       </div>
     </div>
     <div className="form-group row">
-      <label htmlFor="file" className="col-sm-2 col-form-label">File</label>
+      <label htmlFor="file" className="col-sm-2 col-form-label">Файл</label>
       <div className="col-sm-10">
         <input type="file" onChange = {fileSelectChange} />
         {errors.has('file') && <div className="invalid-feedback">{errors.first('file')}</div>}

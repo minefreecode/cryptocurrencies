@@ -54,7 +54,17 @@ export function articleAddRequest(params) {
 export function articleUpdateRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.patch(`articles/${params.id}`, transformRequest(params))
+      const formData = new FormData();
+      formData.append('image', params.selectedFile);
+      formData.append('title', params.title);
+      formData.append('description', params.description);
+      formData.append('content', params.content);
+      formData.append('id', params.id);
+      formData.append('_method', 'PATCH');
+
+      Http.defaults.headers.common.Accept = 'multipart/form-data';
+      Http.post(`/articles/${params.id}`, formData)
+      //Http.patch(`articles/${params.id}`, transformRequest(params))
         .then(res => {
           dispatch(articleActions.add(transformResponse(res.data)))
           return resolve()
