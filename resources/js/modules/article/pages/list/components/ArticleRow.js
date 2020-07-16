@@ -30,11 +30,11 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
       <div className="btn-group" role="group" aria-label="Actions">
         {
           article.published
-          ? <button className="btn btn-warning" onClick={() => togglePublish(article.id)}>Un Published</button>
-          : <button className="btn btn-success" onClick={() => togglePublish(article.id)}>Publish</button>
+          ? <button className="btn btn-warning" onClick={() => togglePublish(article.id)}>Снять с публикации</button>
+          : <button className="btn btn-success" onClick={() => togglePublish(article.id)}>Опубликовать</button>
         }
-        <Link className="btn btn-primary" to={`articles/${article.id}/edit`}>Edit</Link>
-        <button className="btn btn-danger" onClick={() => handleRemove(article.id)}>Delete</button>
+        <Link className="btn btn-primary" to={`articles/${article.id}/edit`}>Редактировать</Link>
+        <button className="btn btn-danger" onClick={() => handleRemove(article.id)}>Удалить</button>
       </div>
     </td>
   </tr>)

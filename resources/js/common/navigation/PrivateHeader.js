@@ -11,8 +11,8 @@ export default function PrivateHeader({user, showNavigation, showDropdown, toggl
   return (
     <Collapse className="navbar-collapse" isOpen={ showNavigation }>
       <ul className="navbar-nav mr-auto">
-        <NavItem path="/">Home</NavItem>
-        <NavItem path="/articles">Articles</NavItem>
+        <NavItem path="/">Главная</NavItem>
+        <NavItem path="/articles">Статьи</NavItem>
       </ul>
 
       <ul className="navbar-nav">
@@ -22,11 +22,11 @@ export default function PrivateHeader({user, showNavigation, showDropdown, toggl
           </DropdownToggle>
           <DropdownMenu className="dropdown-menu-right">
             <Link className='dropdown-item' to={ `/users/${ user.id }/edit` }>
-              <span className="fa fa-user-o" title="logout" aria-hidden="true"/> Profile
+              <span className="fa fa-user-o" title="logout" aria-hidden="true"/> Профиль
             </Link>
             <DropdownItem divider/>
             <DropdownItem onClick={ e => logout(e) }>
-              <span className="fa fa-sign-out" title="logout" aria-hidden="true"/> Logout
+              <span className="fa fa-sign-out" title="logout" aria-hidden="true"/> Выход
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
