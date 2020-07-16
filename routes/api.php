@@ -29,4 +29,8 @@ Route::group(["prefix" => "{$api_version}"], function() {
     // регистрируем роуты артиклей
     Route::prefix('articles')
         ->group(base_path('routes/api/articles.php'));
+
+    // регистрируем роуты криптовалют
+    Route::prefix('cryptocurrencies')
+        ->group(base_path('routes/api/cryptocurrencies.php'));
 });
