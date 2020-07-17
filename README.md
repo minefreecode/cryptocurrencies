@@ -24,17 +24,3 @@ docker-compose up -d
 
 `http://localhost:3000`
 
-TODO:
-
-- [x] Add Redux
-- [x] Add Passport for authentication
-- [x] User Login
-- [x] User Register
-- [x] Users Crud
-- [x] Articles Crud
-- [x] Form validation Client and Server
-- [ ] Reset Password
-- [x] Tests
-- [x] Upgrade to Laravel 7
-- [x] Upgrade to React 16.13
-- [x] docker
