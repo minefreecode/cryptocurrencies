@@ -2,10 +2,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { articleListRequest, articleUpdateRequest, articleRemoveRequest } from '../../service'
+import { cryptocurrencyListRequest, cryptocurrencyUpdateRequest, cryptocurrencyRemoveRequest } from '../../service'
 
 // import components
-import CryptocurrencyRow from './components/ArticleRow'
+import CryptocurrencyRow from './components/CryptocurrencyRow'
 import { Link } from 'react-router-dom'
 
 class Page extends Component {
@@ -20,32 +20,23 @@ class Page extends Component {
     super(props)
   }
 
+  //После монтирования компонента
   componentDidMount() {
-    console.log('moeen')
     const { dispatch } = this.props
 
-    dispatch(articleListRequest({}))
+    //Загружаем в хранилище криптовалюты
+    dispatch(cryptocurrencyListRequest({}))
   }
 
-
-  togglePublish = (id) => {
-    const cryptocurrency = this.props.cryptocurrencies.find(cryptocurrency => (cryptocurrency.id === id))
-
-    if (!cryptocurrency)
-      return
-
-
-    this.props.dispatch(cryptocurrencyUpdateRequest(cryptocurrency.toJson()))
-  }
 
   handleRemove = (id) => {
     this.props.dispatch(cryptocurrencyRemoveRequest(id))
   }
 
-  renderArticles() {
+  renderCryptocurrencies() {
     return this.props.cryptocurrencies.map((cryptocurrency, index) => {
       return <CryptocurrencyRow key={index}
-                                article={cryptocurrency}
+                                cryptocurrency={cryptocurrency}
                                 index={index}
                                 togglePublish={this.togglePublish}
                                 handleRemove={this.handleRemove}/>
@@ -67,7 +58,7 @@ class Page extends Component {
         </tr>
         </thead>
         <tbody>
-        { this.renderArticles() }
+        { this.renderCryptocurrencies() }
         </tbody>
       </table>
       </main>

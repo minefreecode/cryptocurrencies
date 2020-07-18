@@ -2,16 +2,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { articleAddRequest } from '../../service'
+import { cryptocurrencyAddRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 
 // import components
 import Form from './components/Form'
 
 class Page extends Component {
-  static displayName = 'AddArticle'
+  static displayName = 'AddCryptocurrency'
   static propTypes = {
-    article: PropTypes.object.isRequired,
+    cryptocurrency: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   }
   
@@ -19,15 +19,15 @@ class Page extends Component {
     super(props)
     
     this.validator = new ReeValidate.Validator({
-      title: 'required|min:3',
-      content: 'required|min:10',
+      name: 'required|min:3',
+      symbol: 'required',
       description: 'required|min:10',
     })
     
-    const article = this.props.article.toJson()
+    const cryptocurrency = this.props.cryptocurrency.toJson()
     
     this.state = {
-      article,
+      cryptocurrency,
       errors: this.validator.errors
     }
     
@@ -38,10 +38,10 @@ class Page extends Component {
   }
   
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const article = nextProps.article.toJson()
+    const cryptocurrency = nextProps.cryptocurrency.toJson()
     
-    if (!_.isEqual(this.state.article, article)) {
-      this.setState({ article })
+    if (!_.isEqual(this.state.cryptocurrency, cryptocurrency)) {
+      this.setState({ cryptocurrency })
     }
     
   }
@@ -49,7 +49,7 @@ class Page extends Component {
   handleChange(name, value) {
     const { errors } = this.validator
   
-    this.setState({ article: { ...this.state.article, [name]: value} })
+    this.setState({ cryptocurrency: { ...this.state.cryptocurrency, [name]: value} })
   
     errors.remove(name)
   
@@ -61,21 +61,21 @@ class Page extends Component {
   
   handleSubmit(e) {
     e.preventDefault()
-    const article = this.state.article
+    const cryptocurrency = this.state.cryptocurrency
     const { errors } = this.validator
     
-    this.validator.validateAll(article)
+    this.validator.validateAll(cryptocurrency)
       .then((success) => {
         if (success) {
-          this.submit(article)
+          this.submit(cryptocurrency)
         } else {
           this.setState({ errors })
         }
       })
   }
   
-  submit(article) {
-    this.props.dispatch(articleAddRequest(article))
+  submit(cryptocurrency) {
+    this.props.dispatch(cryptocurrencyAddRequest(cryptocurrency))
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator
   
@@ -90,12 +90,12 @@ class Page extends Component {
       })
 
     //редирект после добавления
-    this.props.history.push("/articles");
+    this.props.history.push("/cryptocurrencies");
   }
 
   //Для добавления файла
   fileSelect = event => {
-    this.setState({ article: { ...this.state.article, ['selectedFile']: event.target.files[0]} })
+    this.setState({ cryptocurrency: { ...this.state.cryptocurrency, ['selectedFile']: event.target.files[0]} })
     console.log(event.target.files[0])
   }
 

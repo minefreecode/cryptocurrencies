@@ -1,18 +1,18 @@
-// import libs
+// импортировать библиотеки
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { articleEditRequest, articleUpdateRequest } from '../../service'
+import { cryptocurrencyEditRequest, cryptocurrencyUpdateRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 
 // import components
 import Form from './components/Form'
 
 class Page extends Component {
-  static displayName = 'EditArticle'
+  static displayName = 'EditCryptocurrency'
   static propTypes = {
     match: PropTypes.object.isRequired,
-    article: PropTypes.object,
+    cryptocurrency: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
   }
 
@@ -20,15 +20,15 @@ class Page extends Component {
     super(props)
 
     this.validator = new ReeValidate.Validator({
-      title: 'required|min:3',
-      content: 'required|min:10',
+      name: 'required|min:3',
+      symbol: 'required',
       description: 'required|min:10',
     })
 
-    const article = this.props.article.toJson()
+    const cryptocurrency = this.props.cryptocurrency.toJson()
 
     this.state = {
-      article,
+      cryptocurrency,
       errors: this.validator.errors
     }
 
@@ -37,30 +37,30 @@ class Page extends Component {
   }
 
   UNSAFE_componentWillMount() {
-    this.loadArticle()
+    this.loadCryptocurrency()
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const article = nextProps.article.toJson()
+    const cryptocurrency = nextProps.cryptocurrency.toJson()
 
-    if (!_.isEqual(this.state.article, article)) {
-      this.setState({ article })
+    if (!_.isEqual(this.state.cryptocurrency, cryptocurrency)) {
+      this.setState({ cryptocurrency })
     }
 
   }
 
-  loadArticle() {
-    const { match, article, dispatch } = this.props
+  loadCryptocurrency() {
+    const { match, cryptocurrency, dispatch } = this.props
 
-    if (!article.id) {
-      dispatch(articleEditRequest(match.params.id))
+    if (!cryptocurrency.id) {
+      dispatch(cryptocurrencyEditRequest(match.params.id))
     }
   }
 
   handleChange(name, value) {
     const { errors } = this.validator
 
-    this.setState({ article: { ...this.state.article, [name]: value} })
+    this.setState({ cryptocurrency: { ...this.state.cryptocurrency, [name]: value} })
 
     errors.remove(name)
 
@@ -72,21 +72,21 @@ class Page extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    const article = this.state.article
+    const cryptocurrency = this.state.cryptocurrency
     const { errors } = this.validator
 
-    this.validator.validateAll(article)
+    this.validator.validateAll(cryptocurrency)
       .then((success) => {
         if (success) {
-          this.submit(article)
+          this.submit(cryptocurrency)
         } else {
           this.setState({ errors })
         }
       })
   }
 
-  submit(article) {
-    this.props.dispatch(articleUpdateRequest(article))
+  submit(cryptocurrency) {
+    this.props.dispatch(cryptocurrencyUpdateRequest(cryptocurrency))
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator
 
@@ -99,18 +99,18 @@ class Page extends Component {
         this.setState({ errors })
       })
     //редирект после добавления
-    this.props.history.push("/articles");
+    this.props.history.push("/cryptocurrencies");
   }
   //Для добавления файла
   fileSelect = event => {
-    this.setState({ article: { ...this.state.article, ['selectedFile']: event.target.files[0]} })
+    this.setState({ cryptocurrency: { ...this.state.cryptocurrency, ['selectedFile']: event.target.files[0]} })
     console.log(event.target.files[0])
   }
 
   renderForm() {
-    const { article } = this.props
+    const { cryptocurrency } = this.props
 
-    if (article.id) {
+    if (cryptocurrency.id) {
       return <Form {...this.state}
                    onChange={this.handleChange}
                    onSubmit={this.handleSubmit}

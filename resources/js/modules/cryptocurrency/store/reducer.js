@@ -1,8 +1,8 @@
 import {
-  ARTICLE_ADD,
-  ARTICLE_UPDATE,
-  ARTICLE_REMOVE,
-  ARTICLE_LIST,
+  CRYPTOCURRENCY_ADD,
+  CRYPTOCURRENCY_UPDATE,
+  CRYPTOCURRENCY_REMOVE,
+  CRYPTOCURRENCY_LIST,
 } from './action-types'
 
 const initialState = {
@@ -20,13 +20,13 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload = null }) => {
   switch(type) {
-    case ARTICLE_ADD:
+    case CRYPTOCURRENCY_ADD:
       return add(state, payload)
-    case ARTICLE_UPDATE:
+    case CRYPTOCURRENCY_UPDATE:
       return update(state, payload)
-    case ARTICLE_REMOVE:
+    case CRYPTOCURRENCY_REMOVE:
       return remove(state, payload)
-    case ARTICLE_LIST:
+    case CRYPTOCURRENCY_LIST:
       return list(state, payload)
     default:
       return state

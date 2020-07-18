@@ -7,36 +7,36 @@
  */
 
 import {
-  ARTICLE_ADD,
-  ARTICLE_UPDATE,
-  ARTICLE_REMOVE,
-  ARTICLE_LIST,
+  CRYPTOCURRENCY_ADD,
+  CRYPTOCURRENCY_UPDATE,
+  CRYPTOCURRENCY_REMOVE,
+  CRYPTOCURRENCY_LIST,
 } from './action-types';
 
 export function add(payload) {
   return {
-    type: ARTICLE_ADD,
+    type: CRYPTOCURRENCY_ADD,
     payload
   }
 }
 
 export function update(payload) {
   return {
-    type: ARTICLE_UPDATE,
+    type: CRYPTOCURRENCY_UPDATE,
     payload
   }
 }
 
 export function remove(payload) {
   return {
-    type: ARTICLE_REMOVE,
+    type: CRYPTOCURRENCY_REMOVE,
     payload
   }
 }
 
 export function list(payload) {
   return {
-    type: ARTICLE_LIST,
+    type: CRYPTOCURRENCY_LIST,
     payload
   }
 }

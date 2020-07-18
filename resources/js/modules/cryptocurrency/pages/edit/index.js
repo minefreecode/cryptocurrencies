@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Cryptocurrency from '../../Article'
+import Cryptocurrency from '../../Cryptocurrency'
 
 // import components
 import Page from './Page'

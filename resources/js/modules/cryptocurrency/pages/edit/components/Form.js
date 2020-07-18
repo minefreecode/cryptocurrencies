@@ -1,42 +1,54 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import MyEditor from '../../../../../common/wysiwyg-editor/index'
 import styled from "styled-components";
 
-const ArticleImage = styled.img`
+const CryptocurrencyImage = styled.img`
    width: 50px;
    height: 50px;
 `;
 
-const displayName = 'ArticleFrom'
+const displayName = 'CryptocurrencyFrom'
 const propTypes = {
-    article: PropTypes.object.isRequired,
+    cryptocurrency: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     fileSelectChange: PropTypes.func.isRequired,
 }
 
-const Form = ({article, errors, onChange, onSubmit, fileSelectChange}) => {
+const Form = ({cryptocurrency, errors, onChange, onSubmit, fileSelectChange}) => {
 
     function handleChange(name, value) {
-        if (value !== article[name]) {
+        if (value !== cryptocurrency[name]) {
             onChange(name, value)
         }
     }
 
     return <form onSubmit={e => onSubmit(e)}>
         <div className="form-group row">
-            <label htmlFor="title" className="col-sm-2 col-form-label">Название</label>
+            <label htmlFor="name" className="col-sm-2 col-form-label">Название</label>
             <div className="col-sm-10">
                 <input type="text"
-                       id="title"
-                       name="title"
-                       className={`form-control ${errors.has('title') && 'is-invalid'}`}
+                       id="name"
+                       name="name"
+                       className={`form-control ${errors.has('name') && 'is-invalid'}`}
                        placeholder="Title"
-                       value={article.title || ''}
-                       onChange={e => handleChange(e.target.name, e.target.value)}/>
-                {errors.has('title') && <div className="invalid-feedback">{errors.first('title')}</div>}
+                       value={cryptocurrency.name || ''}
+                       onChange={e => handleChange(e.target.name, e.target.value)} />
+                {errors.has('name') && <div className="invalid-feedback">{errors.first('name')}</div>}
+            </div>
+        </div>
+        <div className="form-group row">
+            <label htmlFor="symbol" className="col-sm-2 col-form-label">Описание</label>
+            <div className="col-sm-10">
+        <textarea id="symbol"
+                  name="symbol"
+                  className={`form-control ${errors.has('symbol') && 'is-invalid'}`}
+                  rows="3"
+                  placeholder="Description"
+                  value={cryptocurrency.symbol}
+                  onChange={e => handleChange(e.target.name, e.target.value)} />
+                {errors.has('symbol') && <div className="invalid-feedback">{errors.first('symbol')}</div>}
             </div>
         </div>
         <div className="form-group row">
@@ -47,21 +59,14 @@ const Form = ({article, errors, onChange, onSubmit, fileSelectChange}) => {
                   className={`form-control ${errors.has('description') && 'is-invalid'}`}
                   rows="3"
                   placeholder="Description"
-                  value={article.description}
-                  onChange={e => handleChange(e.target.name, e.target.value)}/>
+                  value={cryptocurrency.description}
+                  onChange={e => handleChange(e.target.name, e.target.value)} />
                 {errors.has('description') && <div className="invalid-feedback">{errors.first('description')}</div>}
             </div>
         </div>
         <div className="form-group row">
-            <label htmlFor="content" className="col-sm-2 col-form-label">Контент</label>
-            <div className="col-sm-10">
-                <MyEditor id="content" value={article.content} onChange={e => handleChange('content', e)}/>
-                {errors.has('content') && <div className="invalid-feedback">{errors.first('content')}</div>}
-            </div>
-        </div>
-        <div className="form-group row">
             <label htmlFor="file" className="col-sm-2 col-form-label">Файл</label>
-            {article.imageUrl != '' ? <ArticleImage src={article.imageUrl}/> : ''}
+            {cryptocurrency.imageUrl != '' ? <CryptocurrencyImage src={cryptocurrency.imageUrl}/> : ''}
         </div>
         <div className="form-group row">
             <div className="col-sm-10">

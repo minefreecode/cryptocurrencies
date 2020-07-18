@@ -1,7 +1,6 @@
 import Http from '../../utils/Http'
 import Transformer from '../../utils/Transformer'
 import * as cryptocurrencyActions from './store/actions'
-import axios from "axios";
 
 function transformRequest(parms) {
   return Transformer.send(parms)
@@ -17,9 +16,9 @@ export function cryptocurrencyAddRequest(params) {
     new Promise((resolve, reject) => {
       const formData = new FormData();
       formData.append('image', params.selectedFile)
-      formData.append('title', params.title)
+      formData.append('name', params.name)
       formData.append('description', params.description)
-      formData.append('content', params.content)
+      formData.append('symbol', params.symbol)
 
       Http.defaults.headers.common.Accept = 'multipart/form-data';
       Http.post('/cryptocurrencies', formData)
@@ -56,9 +55,9 @@ export function cryptocurrencyUpdateRequest(params) {
     new Promise((resolve, reject) => {
       const formData = new FormData();
       formData.append('image', params.selectedFile);
-      formData.append('title', params.title);
+      formData.append('name', params.name);
       formData.append('description', params.description);
-      formData.append('content', params.content);
+      formData.append('symbol', params.symbol);
       formData.append('id', params.id);
       formData.append('_method', 'PATCH');
 
@@ -107,20 +106,12 @@ export function cryptocurrencyRemoveRequest(id) {
 }
 
 /**
- * Получить список Article
- * @param params (1-й - номер страницы, Url - откуда скачиваем)
+ * Получить список Криптовалют
  * @returns {function(...[*]=)}
  */
-export function cryptocurrencyListRequest(params) {
-
-  let { pageNumber = 1, url = '/cryptocurrencies' } = params
-
-  return dispatch => {
-    if (pageNumber > 1) {
-      url = url + `?page=${pageNumber}`
-    }
-
-    Http.get(url)
+export function cryptocurrencyListRequest() {
+  let url = '/cryptocurrencies';
+  Http.get(url)
       .then((res) => {
         dispatch(cryptocurrencyActions.list(transformResponse(res.data)))
       })
@@ -128,7 +119,6 @@ export function cryptocurrencyListRequest(params) {
         // TODO: handle err
         console.error(err.response)
       })
-  }
 }
 
 export function cryptocurrencyEditRequest(id) {
@@ -141,7 +131,6 @@ export function cryptocurrencyEditRequest(id) {
         // TODO: handle err
         console.error(err.response)
       })
-  }
 }
 
 }

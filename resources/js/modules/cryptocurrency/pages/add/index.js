@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Cryptocurrency from '../../Article'
+import Cryptocurrency from '../../Cryptocurrency'
 
 // Импортируем страницу добавления
 import Page from './Page'
@@ -9,9 +9,9 @@ import Page from './Page'
  * @returns {{article: Cryptocurrency}}
  */
 const mapStateToProps = () => {
-  const article = new Cryptocurrency({})
+  const cryptocurrency = new Cryptocurrency({})
   return {
-    article
+    cryptocurrency
   }
 }
 
