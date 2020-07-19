@@ -53,6 +53,7 @@ class CryptocurrencyController extends Controller
      */
     public function store(CryptocurrencyRequest $request)
     {
+        Log::info($request);
         $cryptocurrency = new Cryptocurrency($request->validated());
 
         if ($request['image']) {
@@ -61,10 +62,10 @@ class CryptocurrencyController extends Controller
             $cryptocurrency['image'] = $fileName;
         }
 
-        $cryptocurrency->save($cryptocurrency);
+        $cryptocurrency->save();
 
 
-        return response()->json($cryptocurrency, 201);
+        return response()->json($cryptocurrency, 200);
     }
 
     /**

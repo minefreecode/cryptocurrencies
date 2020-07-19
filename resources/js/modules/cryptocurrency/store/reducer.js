@@ -23,10 +23,10 @@ const reducer = (state = initialState, { type, payload = null }) => {
 }
 
 function add(state, payload) {
-  const article = state.data.find((article) => (article.id === payload.id))
+  const article = state.find((article) => (article.id === payload.id))
 
   if (!article) {
-    const data = [...state.data, payload]
+    const data = [...state, payload]
 
     return Object.assign({}, state, { data })
   }
@@ -35,7 +35,7 @@ function add(state, payload) {
 }
 
 function update(state, payload) {
-  const data = state.data.map(obj => {
+  const data = state.map(obj => {
     if (obj.id === payload.id) {
       return { ...obj, ...payload }
     }
@@ -46,7 +46,7 @@ function update(state, payload) {
 }
 
 function remove(state, id) {
-  const data = state.data.filter(obj => obj.id !== id)
+  const data = state.filter(obj => obj.id !== id)
 
   return Object.assign({}, state, { data })
 }
@@ -54,7 +54,7 @@ function remove(state, id) {
 function list(state, payload) {
   state = Object.assign({}, payload)
 
-  return state
+  return Object.values(state)
 }
 
 export default reducer

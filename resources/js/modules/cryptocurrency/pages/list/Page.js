@@ -37,7 +37,6 @@ class Page extends Component {
       return <CryptocurrencyRow key={index}
                                 cryptocurrency={cryptocurrency}
                                 index={index}
-                                togglePublish={this.togglePublish}
                                 handleRemove={this.handleRemove}/>
     })
   }

@@ -27,6 +27,7 @@ export function cryptocurrencyAddRequest(params) {
           return resolve()
         })
         .catch((err) => {
+            console.log(err);
           const statusCode = err.response.status;
           const data = {
             error: null,

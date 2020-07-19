@@ -15,16 +15,16 @@ const propTypes = {
   handleRemove: PropTypes.func.isRequired,
 }
 
-const CryptocurrencyRow = ({ index, cryptocurrency, togglePublish, handleRemove }) => {
+const CryptocurrencyRow = ({ index, cryptocurrency, handleRemove }) => {
   return (<tr key={index}>
     <th scope="row">{index+1}</th>
     <td>{cryptocurrency.imageUrl != ''? <CryptocurrencyImage src={cryptocurrency.imageUrl}/>: ''}</td>
-    <td>{cryptocurrency.title}</td>
+    <td>{cryptocurrency.name}</td>
     <td>{cryptocurrency.symbol}</td>
     <td>{cryptocurrency.description}</td>
     <td>
       <div className="btn-group" role="group" aria-label="Actions">
-        <Link className="btn btn-primary" to={`cryptocurrenciss/${cryptocurrency.id}/edit`}>Редактировать</Link>
+        <Link className="btn btn-primary" to={`cryptocurrencies/${cryptocurrency.id}/edit`}>Редактировать</Link>
         <button className="btn btn-danger" onClick={() => handleRemove(cryptocurrency.id)}>Удалить</button>
       </div>
     </td>

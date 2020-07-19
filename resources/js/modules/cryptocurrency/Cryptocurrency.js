@@ -12,7 +12,7 @@ class Cryptocurrency extends Model {
   initialize(props) {
     super.initialize(props)
 
-    this.title = props.title || ''
+    this.name = props.name || ''
     this.description = props.description || ''
     this.symbol = props.symbol || ''
     this.imageUrl = props.imageUrl //Картинка
