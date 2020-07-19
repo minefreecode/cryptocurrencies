@@ -28,7 +28,7 @@ function add(state, payload) {
   if (!article) {
     const data = [...state, payload]
 
-    return Object.assign({}, state, { data })
+    return Object.assign({}, state, data )
   }
 
   return update(state, payload)
@@ -42,7 +42,8 @@ function update(state, payload) {
     return obj
   })
 
-  return Object.assign({}, state, { data })
+  let obj  = Object.assign({}, state,  data )
+  return obj
 }
 
 function remove(state, id) {

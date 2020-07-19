@@ -6,9 +6,10 @@ import Page from './Page'
 
 const mapStateToProps = (state, router) => {
   const { params } = router.match
-  const article = state.articles.data.find(article => article.id === Number(params.id))
+  let cryptocurrencies = Object.values(state.cryptocurrencies)
+  const cryptocurrency = cryptocurrencies.find(cryptocurrency => cryptocurrency.id === Number(params.id))
   return {
-    article: article ? new Cryptocurrency(article) : new Cryptocurrency({})
+    cryptocurrency: cryptocurrency ? new Cryptocurrency(cryptocurrency) : new Cryptocurrency({})
   }
 }
 
