@@ -11,8 +11,7 @@ import { Link } from 'react-router-dom'
 class Page extends Component {
   static displayName = 'CryptocurrencyPage'
   static propTypes = {
-    meta: PropTypes.object.isRequired,
-    cryptocurrency: PropTypes.array.isRequired,
+    cryptocurrencies: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired,
   }
   

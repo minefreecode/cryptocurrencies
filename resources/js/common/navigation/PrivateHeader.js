@@ -13,6 +13,7 @@ export default function PrivateHeader({user, showNavigation, showDropdown, toggl
       <ul className="navbar-nav mr-auto">
         <NavItem path="/">Главная</NavItem>
         <NavItem path="/articles">Статьи</NavItem>
+        <NavItem path="/cryptocurrencies">Справочник криптовалют</NavItem>
       </ul>
 
       <ul className="navbar-nav">

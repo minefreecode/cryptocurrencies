@@ -12,7 +12,6 @@ const displayName = 'CryptocurrencyRow'
 const propTypes = {
   index: PropTypes.number.isRequired,
   cryptocurrency: PropTypes.object.isRequired,
-  togglePublish: PropTypes.func.isRequired,
   handleRemove: PropTypes.func.isRequired,
 }
 

@@ -11,11 +11,10 @@ import Page from './Page'
  * @returns {{meta: *, cryptocurrencies: *}}
  */
 const mapStateToProps = state => {
-  const {data, ...meta} = state.cryptocurrencies
+  const data = Object.values(state.cryptocurrencies);
   
   return {
-    cryptocurrencies: data.map((cryptocurrency) => new Cryptocurrency(cryptocurrency)),
-    meta: Object.assign({}, meta)
+    cryptocurrencies: data.map((cryptocurrency) => new Cryptocurrency(cryptocurrency))
   }
 }
 

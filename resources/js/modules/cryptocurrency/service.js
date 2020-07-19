@@ -110,15 +110,18 @@ export function cryptocurrencyRemoveRequest(id) {
  * @returns {function(...[*]=)}
  */
 export function cryptocurrencyListRequest() {
-  let url = '/cryptocurrencies';
-  Http.get(url)
-      .then((res) => {
-        dispatch(cryptocurrencyActions.list(transformResponse(res.data)))
-      })
-      .catch((err) => {
-        // TODO: handle err
-        console.error(err.response)
-      })
+    let url = '/cryptocurrencies';
+
+    return dispatch => {
+        Http.get(url)
+            .then((res) => {
+                dispatch(cryptocurrencyActions.list(transformResponse(res.data)))
+            })
+            .catch((err) => {
+                // TODO: handle err
+                console.error(err.response)
+            })
+    }
 }
 
 export function cryptocurrencyEditRequest(id) {
