@@ -1,25 +1,31 @@
-/**
- * Main store function
- */
+//Импорт функций для работы с redux
 import { createStore, applyMiddleware, compose } from 'redux'
+//Для асинхронных экшенов
 import thunk from 'redux-thunk'
-// import { createLogger } from 'redux-logger'
+//Включаем логгер для режима разработки
+ import { createLogger } from 'redux-logger'
+//Редукторы для всех модулей
 import rootReducer from './reducers'
 
+//Основная функция конфига
 export default function (initialState = {}) {
-  // Middleware and store enhancers
+
+  // Посредники и усилители хранилищ
   const enhancers = [
+      //Сообщаем посреднику о redux-thunk
     applyMiddleware(thunk),
   ]
-  
+
+  //Если это режим разработки. Задается настройкми npm
   if (process.env.NODE_ENV !== 'production') {
-    // enhancers.push(applyMiddleware(createLogger()))
+    //Сообщаем посреднику о логгере
+     enhancers.push(applyMiddleware(createLogger()))
     window.__REDUX_DEVTOOLS_EXTENSION__ && enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__())
   }
-  
+  //Создаем хранилище
   const store = createStore(rootReducer, initialState, compose(...enhancers))
   
-  // For hot reloading reducers
+  // Для перезагрузки редуктора во время горячей замены
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('./reducers', () => {

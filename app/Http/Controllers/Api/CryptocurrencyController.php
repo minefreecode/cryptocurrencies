@@ -97,7 +97,11 @@ class CryptocurrencyController extends Controller
 
         if ($request['image']){
             $fileName = "fileName" . time() . '.' . $request['image']->getClientOriginalExtension();
-            unlink(public_path('/images/article_images/' . $cryptocurrency->image));
+
+            if (file_exists($full_filename = public_path('/images/article_images/' . $cryptocurrency->image))) {
+                unlink($full_filename);
+            }
+
             $request['image']->move(public_path('/images/article_images'), $fileName);
             $data['image'] = $fileName;
         }

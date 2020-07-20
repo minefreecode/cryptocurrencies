@@ -1,20 +1,37 @@
-// import libs
+// Импорт библиотек
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { userUpdateRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 
-// import components
+// Импорт компонента для редактирования пользователя
 import Form from './components/Form'
 
+/**
+ * Контейнер PAGE
+ */
 class Page extends Component {
+  /**
+   * Отображаемое имя контейнера для отладки
+   * @type {string}
+   */
   static displayName = 'UserPage'
+
+
+  /**
+   * Свойства контейнера
+   * @type {{dispatch: shim, user: shim}}
+   */
   static propTypes = {
-    user: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired, //Пользователь
+    dispatch: PropTypes.func.isRequired,//Диспетчер для связки react+redux
   }
-  
+
+  /**
+   * Конструктор
+   * @param props
+   */
   constructor(props) {
     super(props)
     
@@ -74,7 +91,9 @@ class Page extends Component {
   }
   
   submit(user) {
+    //Выполняем обновление пользователя
     this.props.dispatch(userUpdateRequest(user))
+        //В случае ошибок в промисе
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator
         

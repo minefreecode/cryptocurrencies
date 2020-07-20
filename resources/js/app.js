@@ -1,11 +1,9 @@
 require('./bootstrap')
 
-//Загрузка основной библиотеки React
 import React from 'react'
-//Dom для реакта
 import { render } from 'react-dom'
-//Подключение Redux
 import { Provider } from 'react-redux'
+
 //Подключаем хранилище
 import store from './store'
 

@@ -2,14 +2,21 @@ import Http from '../../utils/Http'
 import Transformer from '../../utils/Transformer'
 import * as userActions from './store/actions'
 
+/**
+ * Запрос на обновление пользователя
+ * @param params Входные параметры
+ * @returns {function(*=): Promise<unknown>} Возвращает объект Promise
+ */
 export function userUpdateRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
       Http.patch(`/users/${params.id}`, Transformer.send(params))
+          //Запрос выполнен успешно
         .then(res => {
           dispatch(userActions.userUpdate(Transformer.fetch(res.data.user)))
           return resolve()
         })
+          //В случае ошибок в запросе
         .catch((err) => {
           const statusCode = err.response.status;
           const data = {
