@@ -11,6 +11,7 @@ function transformResponse(params) {
 }
 
 
+
 export function cryptocurrencyAddRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
@@ -21,7 +22,7 @@ export function cryptocurrencyAddRequest(params) {
       formData.append('symbol', params.symbol)
 
       Http.defaults.headers.common.Accept = 'multipart/form-data';
-      Http.post('/cryptocurrencies', formData)
+      Http.PUT('/cryptocurrencies', formData)
         .then(res => {
           dispatch(cryptocurrencyActions.add(transformResponse(res.data)))
           return resolve()
