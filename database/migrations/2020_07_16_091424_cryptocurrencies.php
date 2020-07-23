@@ -18,7 +18,7 @@ class Cryptocurrencies extends Migration
             $table->string('name');
             $table->string('symbol');
             $table->text('description');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

@@ -126,7 +126,12 @@ class ArticleController extends Controller
 
         if ($request['image']){
             $fileName = "fileName" . time() . '.' . $request['image']->getClientOriginalExtension();
-            unlink(public_path('/images/article_images/' . $article->image));
+
+            $file = public_path('/images/article_images/' . $article->image);
+            if (file_exists($file)) {
+                unlink($file);
+            }
+
             $request['image']->move(public_path('/images/article_images'), $fileName);
             $data['image'] = $fileName;
         }
