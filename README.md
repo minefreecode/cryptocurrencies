@@ -9,18 +9,18 @@
 docker-compose up -d
 ```
 
-когда докер построит все контейнеры, запустите laravel-react-app, используя следущую команду
+когда докер построит все контейнеры, запустите контейнер laravel-react-app, используя следущую команду
 `docker exec -it laravel_react_app sh`
 
 теперь ты будешь внутри контейнера
 
-выполни команды
+выполните команды
 1. `composer install && composer update`
 2. `php artisan cron:refresh-database`
 3. `php artisan key:gen`
 4. `npm install && npm run dev`
 
-открой браузер по адресу
+откройте браузер и наберите
 
 `http://localhost:3000`
 
